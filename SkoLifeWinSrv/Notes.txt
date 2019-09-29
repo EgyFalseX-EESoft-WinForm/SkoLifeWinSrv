@@ -1,0 +1,6 @@
+﻿
+http://192.168.161.129/SkolifeAsyncSrv/api/SkolifeAsync/getconfig.php
+http://192.168.161.129/SkolifeAsyncSrv/api/SkolifeAsync/postdata.php
+
+http://skolife.net/SkoLifeAsyncSrv/api/SkolifeAsync/getconfig.php
+http://skolife.net/SkoLifeAsyncSrv/api/SkolifeAsync/postdata.php
