@@ -11,10 +11,10 @@
       <Value Profile="(Default)">Data Source=.\sql16;Initial Catalog=skolife;Persist Security Info=True;User ID=sa;Password=2491983</Value>
     </Setting>
     <Setting Name="GetConfigSrvURL" Type="System.String" Scope="User">
-      <Value Profile="(Default)">http://skolife.net/SkoLifeAsyncSrv/api/SkolifeAsync/getconfig.php</Value>
+      <Value Profile="(Default)">http://salamacademy.net/SkoLifeAsyncSrv/api/SkolifeAsync/getconfig.php</Value>
     </Setting>
     <Setting Name="PostDataSrvURL" Type="System.String" Scope="User">
-      <Value Profile="(Default)">http://skolife.net/SkoLifeAsyncSrv/api/SkolifeAsync/postdata.php</Value>
+      <Value Profile="(Default)">http://salamacademy.net/SkoLifeAsyncSrv/api/SkolifeAsync/postdata.php</Value>
     </Setting>
     <Setting Name="ExecuteInterval" Type="System.TimeSpan" Scope="User">
       <Value Profile="(Default)">00:01:00</Value>

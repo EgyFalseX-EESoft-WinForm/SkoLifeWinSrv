@@ -18,7 +18,8 @@ namespace SkoLifeWinSrv.BO
         public string GetPreparedQuery()
         {
             string[] values = dyn_list.OrderBy(o => o.dyn_order).Select(s => s.op_col_value).ToArray();
-            return string.Format($@"{sql_query} WHERE {op_src_filter}", values);
+            string where = string.Format($@"{op_src_filter}", values);
+            return $@"{sql_query} WHERE {where}";
             
         }
     }

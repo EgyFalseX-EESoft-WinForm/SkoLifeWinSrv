@@ -4,3 +4,8 @@ http://192.168.161.129/SkolifeAsyncSrv/api/SkolifeAsync/postdata.php
 
 http://skolife.net/SkoLifeAsyncSrv/api/SkolifeAsync/getconfig.php
 http://skolife.net/SkoLifeAsyncSrv/api/SkolifeAsync/postdata.php
+
+--salamacademy--
+http://salamacademy.net/SkoLifeAsyncSrv/api/SkolifeAsync/getconfig.php
+http://salamacademy.net/SkoLifeAsyncSrv/api/SkolifeAsync/postdata.php
+--

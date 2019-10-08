@@ -36,7 +36,7 @@ namespace SkoLifeWinSrv.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://skolife.net/SkoLifeAsyncSrv/api/SkolifeAsync/getconfig.php")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://salamacademy.net/SkoLifeAsyncSrv/api/SkolifeAsync/getconfig.php")]
         public string GetConfigSrvURL {
             get {
                 return ((string)(this["GetConfigSrvURL"]));
@@ -48,7 +48,7 @@ namespace SkoLifeWinSrv.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://skolife.net/SkoLifeAsyncSrv/api/SkolifeAsync/postdata.php")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://salamacademy.net/SkoLifeAsyncSrv/api/SkolifeAsync/postdata.php")]
         public string PostDataSrvURL {
             get {
                 return ((string)(this["PostDataSrvURL"]));
