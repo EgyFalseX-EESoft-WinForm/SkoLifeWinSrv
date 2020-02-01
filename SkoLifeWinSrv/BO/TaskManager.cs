@@ -50,6 +50,9 @@ namespace SkoLifeWinSrv.BO
             {
                 
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Properties.Settings.Default.GetConfigSrvURL);
+                request.Timeout = int.MaxValue;
+                request.ContinueTimeout = int.MaxValue;
+                request.ReadWriteTimeout = int.MaxValue;
                 request.Method = "GET";
                 request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36";
                 request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;

@@ -24,6 +24,7 @@ namespace SkoLifeWinSrv.BO
             {
                 SqlConnection con = new SqlConnection(Properties.Settings.Default.SkoLifeDBConnection);
                 SqlCommand cmd = new SqlCommand("", con);
+                cmd.CommandTimeout = int.MaxValue;
                 string updateQuery = Op.GetPreparedQuery();
                 DataList = new List<object>();
 
@@ -70,6 +71,9 @@ namespace SkoLifeWinSrv.BO
 
                 string json = Newtonsoft.Json.JsonConvert.SerializeObject(data);
                 var httpWebRequest = (HttpWebRequest)WebRequest.Create(Properties.Settings.Default.PostDataSrvURL);
+                httpWebRequest.Timeout = int.MaxValue;
+                httpWebRequest.ContinueTimeout = int.MaxValue;
+                httpWebRequest.ReadWriteTimeout = int.MaxValue;
                 httpWebRequest.ContentType = "application/json";
                 httpWebRequest.Method = "POST";
 
@@ -79,6 +83,7 @@ namespace SkoLifeWinSrv.BO
                 }
 
                 var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                
                 Stream stream = httpResponse.GetResponseStream();
                 if (stream == null)
                     return false;
