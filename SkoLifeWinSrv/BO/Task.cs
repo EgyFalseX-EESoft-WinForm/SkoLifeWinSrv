@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Data.SqlClient;
+using System.Net.Configuration;
 
 namespace SkoLifeWinSrv.BO
 {
@@ -60,6 +61,8 @@ namespace SkoLifeWinSrv.BO
             return true;
         }
 
+        
+
         public bool SendDataToService()
         {
             try
@@ -99,6 +102,89 @@ namespace SkoLifeWinSrv.BO
             }
             return true;
         }
+
+        #region Request Data
+        public bool GetDataFromW()
+        {
+            try
+            {
+                string updateQuery = Op.GetPreparedQuery();
+
+                List<object> data = new List<object> { Op.op_id, updateQuery };
+
+                string json = Newtonsoft.Json.JsonConvert.SerializeObject(data);
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create(Properties.Settings.Default.RequestDataSrvURL);
+                httpWebRequest.Timeout = int.MaxValue;
+                httpWebRequest.ContinueTimeout = int.MaxValue;
+                httpWebRequest.ReadWriteTimeout = int.MaxValue;
+                httpWebRequest.ContentType = "application/json";
+                httpWebRequest.Method = "POST";
+
+                using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                {
+                    streamWriter.Write(json);
+                }
+
+                var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+
+                Stream stream = httpResponse.GetResponseStream();
+                if (stream == null)
+                    return false;
+                using (var streamReader = new StreamReader(stream))
+                {
+                    var result = streamReader.ReadToEnd();
+                }
+            }
+            catch (Exception ex)
+            {
+                LogsManager.DefaultInstance.LogMsg(LogsManager.LogType.Error, ex.Message, typeof(TaskManager));
+                return false;
+            }
+            return true;
+        }
+
+        public bool PostDyn()
+        {
+            try
+            {
+                if (Op.dyn_list.Count == 0)
+                    return true;
+
+                List<object> data = new List<object> { Op.op_id, Op.dyn_list };
+
+                string json = Newtonsoft.Json.JsonConvert.SerializeObject(data);
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create(Properties.Settings.Default.PostDynSrvURL);
+                httpWebRequest.Timeout = int.MaxValue;
+                httpWebRequest.ContinueTimeout = int.MaxValue;
+                httpWebRequest.ReadWriteTimeout = int.MaxValue;
+                httpWebRequest.ContentType = "application/json";
+                httpWebRequest.Method = "POST";
+
+                using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                {
+                    streamWriter.Write(json);
+                }
+
+                var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+
+                Stream stream = httpResponse.GetResponseStream();
+                if (stream == null)
+                    return false;
+                using (var streamReader = new StreamReader(stream))
+                {
+                    var result = streamReader.ReadToEnd();
+                }
+            }
+            catch (Exception ex)
+            {
+                LogsManager.DefaultInstance.LogMsg(LogsManager.LogType.Error, ex.Message, typeof(TaskManager));
+                return false;
+            }
+            return true;
+        }
+
+        #endregion
+
 
     }
 }

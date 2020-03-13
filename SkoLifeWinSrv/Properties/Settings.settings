@@ -11,13 +11,19 @@
       <Value Profile="(Default)">Data Source=.\sql16;Initial Catalog=skolife;Persist Security Info=True;User ID=sa;Password=2491983</Value>
     </Setting>
     <Setting Name="GetConfigSrvURL" Type="System.String" Scope="User">
-      <Value Profile="(Default)">http://192.168.161.128//SkoLifeAsyncSrv/api/SkolifeAsync/getconfig.php</Value>
+      <Value Profile="(Default)">http://192.168.161.128/SkoLifeAsyncSrv/api/SkolifeAsync/getconfig.php</Value>
     </Setting>
     <Setting Name="PostDataSrvURL" Type="System.String" Scope="User">
-      <Value Profile="(Default)">http://192.168.161.128//SkoLifeAsyncSrv/api/SkolifeAsync/postdata.php</Value>
+      <Value Profile="(Default)">http://192.168.161.128/SkoLifeAsyncSrv/api/SkolifeAsync/postdata.php</Value>
     </Setting>
     <Setting Name="ExecuteInterval" Type="System.TimeSpan" Scope="User">
       <Value Profile="(Default)">00:01:00</Value>
+    </Setting>
+    <Setting Name="RequestDataSrvURL" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://192.168.161.128/SkoLifeAsyncSrv/api/SkolifeAsync/requestdata.php</Value>
+    </Setting>
+    <Setting Name="PostDynSrvURL" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://192.168.161.128/SkoLifeAsyncSrv/api/SkolifeAsync/postdyn.php</Value>
     </Setting>
   </Settings>
 </SettingsFile>

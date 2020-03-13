@@ -39,8 +39,19 @@ namespace SkoLifeWinSrv.BO
         {
             IsBusy = true;
             Task tsk = Tasks.Dequeue();
-            if (tsk.Execute())
-                tsk.SendDataToService();
+            if (tsk.Op.s2w)
+            {
+                if (tsk.Execute())
+                    tsk.SendDataToService();
+            }
+            else
+            {
+                if (tsk.GetDataFromW())
+                {
+                    tsk.PostDyn();
+                }
+            }
+            
             IsBusy = false;
         }
 
