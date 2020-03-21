@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="BO\Config.cs" />
     <Compile Include="BO\Dyn.cs" />
+    <Compile Include="BO\JsonConverter.cs" />
     <Compile Include="LogsManager.cs" />
     <Compile Include="ProjectInstaller.cs">
       <SubType>Component</SubType>

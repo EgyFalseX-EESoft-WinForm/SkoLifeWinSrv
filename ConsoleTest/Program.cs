@@ -34,7 +34,6 @@ namespace ConsoleTest
             //    }
             //}
 
-
             TaskManager.DefaultInstance = new TaskManager();
             TaskManager.DefaultInstance.GetTasks();
             TaskManager.DefaultInstance.Start();

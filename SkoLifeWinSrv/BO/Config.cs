@@ -11,6 +11,8 @@ namespace SkoLifeWinSrv.BO
         public string op_id { get; set; }
         public int op_order { get; set; }
         public string op_desc { get; set; }
+        public string op_dst_tbl { get; set; }
+        public string op_dst_col { get; set; }
         public string sql_query { get; set; }
         public string op_src_filter { get; set; }
         public bool s2w { get; set; }

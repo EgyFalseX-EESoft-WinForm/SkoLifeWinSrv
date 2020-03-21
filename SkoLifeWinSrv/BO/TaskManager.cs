@@ -75,7 +75,7 @@ namespace SkoLifeWinSrv.BO
                     using (var sr = new StreamReader(stream))
                     {
                         string content = sr.ReadToEnd();
-                        List<Config> data = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Config>>(content);
+                        List<Config> data = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Config>>(content, new JsonBooleanConverter());
                         data.ForEach(fe =>
                         {
                             if (Tasks.ToList().OrderBy(o => o.Op.op_order).All(a => a.Op.op_id != fe.op_id))
