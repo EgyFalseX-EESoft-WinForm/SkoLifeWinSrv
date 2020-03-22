@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BO\Config.cs" />
+    <Compile Include="BO\Key.cs" />
     <Compile Include="BO\Dyn.cs" />
     <Compile Include="BO\JsonConverter.cs" />
     <Compile Include="LogsManager.cs" />

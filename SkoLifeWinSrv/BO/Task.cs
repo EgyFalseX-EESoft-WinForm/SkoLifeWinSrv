@@ -218,7 +218,8 @@ namespace SkoLifeWinSrv.BO
 
                 //Merage tmp into distnation table
                 string convStr = string.Join(" , ", (from q in src_col select $"Target.{q} = Source.{q}"));
-                string matchStr = string.Join(" AND ", (from q in src_col select $"Target.{q} = Source.{q}"));
+                //string matchStr = string.Join(" AND ", (from q in src_col select $"Target.{q} = Source.{q}"));
+                string matchStr = string.Join(" AND ", (from q in Op.key_list select $"Target.{q.op_dst_col_name} = Source.{q.op_src_col_name}"));
                 string dst_cols = string.Join(",", (from q in src_col select q));
                 string src_cols = string.Join(",", (from q in src_col select "Source." + q));
                 command.CommandText = $"merge into {Op.op_dst_tbl} as Target using {BulkTableName} AS Source ON {matchStr} when matched then UPDATE SET {convStr} " +

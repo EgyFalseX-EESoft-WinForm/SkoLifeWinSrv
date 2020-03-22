@@ -17,6 +17,7 @@ namespace SkoLifeWinSrv.BO
         public string op_src_filter { get; set; }
         public bool s2w { get; set; }
         public List<Dyn> dyn_list { get; set; }
+        public List<Key> key_list { get; set; }
 
         public string GetPreparedQuery()
         {
