@@ -162,6 +162,7 @@ namespace SkoLifeWinSrv.BO
             SqlConnection connection = new SqlConnection(Properties.Settings.Default.SkoLifeDBConnection);
             SqlCommand command = new SqlCommand("", connection) { CommandTimeout = 0 };
             SqlDataAdapter adp = new SqlDataAdapter(command);
+            string BulkTableName = string.Format("IMP{0}{1}{2}{3}{4}{5}{6}", dtStart.Year, dtStart.Month, dtStart.Day, dtStart.Hour, dtStart.Minute, dtStart.Second, dtStart.Millisecond);
             try
             {
                 
@@ -198,7 +199,6 @@ namespace SkoLifeWinSrv.BO
                 connection.Open();
 
                 //Create tmp table
-                string BulkTableName = string.Format("IMP{0}{1}{2}{3}{4}{5}{6}", dtStart.Year, dtStart.Month, dtStart.Day, dtStart.Hour, dtStart.Minute, dtStart.Second, dtStart.Millisecond);
                 command.CommandText = $"SELECT {string.Join(",", src_col)} INTO {BulkTableName} FROM {Op.op_dst_tbl} WHERE 1 = 0;";
                 command.ExecuteNonQuery();
 
@@ -242,6 +242,11 @@ namespace SkoLifeWinSrv.BO
             }
             catch (SqlException ex)
             {
+                try
+                {
+                    command.CommandText = string.Format(@"DROP TABLE {0}", BulkTableName);
+                    command.ExecuteNonQuery();
+                }catch{}
                 LogsManager.DefaultInstance.LogMsg(LogsManager.LogType.Error, ex.Message, this.GetType());
                 command.Dispose();
                 connection.Dispose();
