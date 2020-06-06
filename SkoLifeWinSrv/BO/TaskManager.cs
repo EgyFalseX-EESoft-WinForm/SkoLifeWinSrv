@@ -42,16 +42,17 @@ namespace SkoLifeWinSrv.BO
             if (tsk.Op.s2w)
             {
                 if (tsk.Execute())
-                    tsk.SendDataToService();
+                    if (tsk.SendDataToService())
+                        LogsManager.DefaultInstance.LogMsg(LogsManager.LogType.Success, $"OP:{tsk.Op.op_id} Success...", GetType());
             }
             else
             {
                 if (tsk.GetDataFromW())
-                {
-                    tsk.PostDyn();
-                }
+                    if (tsk.PostDyn())
+                        LogsManager.DefaultInstance.LogMsg(LogsManager.LogType.Success, $"OP:{tsk.Op.op_id} Success...", GetType());
             }
             
+
             IsBusy = false;
         }
 

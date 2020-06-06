@@ -62,7 +62,7 @@ namespace SkoLifeWinSrv.BO
             }
             catch (Exception ex)
             {
-                LogsManager.DefaultInstance.LogMsg(LogsManager.LogType.Error, ex.Message, typeof(Task));
+                LogsManager.DefaultInstance.LogMsg(LogsManager.LogType.Error, $"OP:{Op.op_id} {ex.Message}", typeof(Task));
                 return false;
             }
             return true;
@@ -104,7 +104,7 @@ namespace SkoLifeWinSrv.BO
             }
             catch (Exception ex)
             {
-                LogsManager.DefaultInstance.LogMsg(LogsManager.LogType.Error, ex.Message, typeof(TaskManager));
+                LogsManager.DefaultInstance.LogMsg(LogsManager.LogType.Error, $"OP:{Op.op_id} {ex.Message}", typeof(Task));
                 return false;
             }
             return true;
@@ -149,7 +149,7 @@ namespace SkoLifeWinSrv.BO
             }
             catch (Exception ex)
             {
-                LogsManager.DefaultInstance.LogMsg(LogsManager.LogType.Error, ex.Message, typeof(TaskManager));
+                LogsManager.DefaultInstance.LogMsg(LogsManager.LogType.Error, $"OP:{Op.op_id} {ex.Message}", typeof(TaskManager));
                 return false;
             }
             return true;
@@ -226,12 +226,23 @@ namespace SkoLifeWinSrv.BO
                     $"when not matched then INSERT ({dst_cols}) VALUES ({src_cols});";
                 //LogsManager.DefaultInstance.LogMsg(LogsManager.LogType.Debug, $"MERGE : {command.CommandText}", typeof(Task));
                 command.ExecuteNonQuery();
-                
+
                 //Update Dyn Fields
+
                 foreach (Dyn dyn in Op.dyn_list)
                 {
-                    DataRow maxRow = BulkTable.Select("1 = 1", dyn.op_col_name + " DESC")[0];
-                    dyn.op_col_value = maxRow[dyn.op_col_name].ToString();
+                    //try if its int
+                    try
+                    {
+                        dyn.op_col_value = BulkTable.AsEnumerable().Select(s => Convert.ToInt32(s[dyn.op_col_name]))
+                            .ToList().Max().ToString();
+                    }
+                    catch
+                    {
+                        DataRow maxRow = BulkTable.Select("1 = 1", dyn.op_col_name + " DESC")[0];
+                        dyn.op_col_value = maxRow[dyn.op_col_name].ToString();
+                    }
+
                 }
 
                 command.CommandText = string.Format(@"DROP TABLE {0}", BulkTableName);
@@ -242,12 +253,13 @@ namespace SkoLifeWinSrv.BO
             }
             catch (SqlException ex)
             {
+                LogsManager.DefaultInstance.LogMsg(LogsManager.LogType.Error, $"OP:{Op.op_id} {ex.Message}", this.GetType());
                 try
                 {
                     command.CommandText = string.Format(@"DROP TABLE {0}", BulkTableName);
                     command.ExecuteNonQuery();
                 }catch{}
-                LogsManager.DefaultInstance.LogMsg(LogsManager.LogType.Error, ex.Message, this.GetType());
+                
                 command.Dispose();
                 connection.Dispose();
             }
@@ -288,7 +300,7 @@ namespace SkoLifeWinSrv.BO
             }
             catch (Exception ex)
             {
-                LogsManager.DefaultInstance.LogMsg(LogsManager.LogType.Error, ex.Message, typeof(TaskManager));
+                LogsManager.DefaultInstance.LogMsg(LogsManager.LogType.Error, $"OP:{Op.op_id} {ex.Message}", typeof(TaskManager));
                 return false;
             }
             return true;
