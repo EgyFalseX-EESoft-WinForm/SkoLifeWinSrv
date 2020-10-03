@@ -51,7 +51,16 @@ namespace SkoLifeWinSrv.BO
                     List<object> row = new List<object>();
                     for (int i = 0; i < dr.FieldCount; i++)
                     {
-                        row.Add(dr.GetValue(i));
+                        if (dr.GetFieldType(i) == typeof(byte[]))
+                        {
+                            byte[] convertedBytes = SkoLifeWinSrv.Utils.XAFCompressionUtils.ConvertOleObjectToByteArrayXaf(dr.GetValue(i));
+                            //string base64String = System.Convert.ToBase64String(convertedBytes);
+                            row.Add(convertedBytes);
+
+                        }
+                        else
+                            row.Add(dr.GetValue(i));
+                        
                     }
                     DataList.Add(row);
                 }
@@ -89,6 +98,7 @@ namespace SkoLifeWinSrv.BO
 
                 using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
                 {
+                    //System.IO.File.WriteAllText(@"C:\TESTBIN.bin", json);
                     streamWriter.Write(json);
                 }
 

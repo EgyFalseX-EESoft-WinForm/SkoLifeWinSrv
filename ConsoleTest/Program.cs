@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -33,6 +36,9 @@ namespace ConsoleTest
             //        Console.WriteLine("The hashes are not same.");
             //    }
             //}
+
+            //savefile();
+            //return;
 
             TaskManager.DefaultInstance = new TaskManager();
             TaskManager.DefaultInstance.GetTasks();
@@ -79,5 +85,21 @@ namespace ConsoleTest
                 return false;
             }
         }
+
+
+        static void savefile()
+        {
+            SqlDataAdapter adp = new SqlDataAdapter("SELECT TOP 1 [Content] FROM FileData"
+                , "Data Source=.;Initial Catalog=skolife;Persist Security Info=True;User ID=sa;Password=2491983");
+            DataTable dt = new DataTable("TEST");
+            adp.Fill(dt);
+            byte[] obj = SkoLifeWinSrv.Utils.XAFCompressionUtils.ConvertOleObjectToByteArrayXaf(dt.Rows[0][0]);
+            FileStream fs = new FileStream(@"C:\testimage.jpg", FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            fs.Write(obj, 0, obj.Length);
+            fs.Flush(true);
+            fs.Close();
+            fs.Dispose();
+        }
+
     }
 }

@@ -5,25 +5,25 @@
     <Setting Name="SkoLifeDBConnection" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Data Source=.\sql16;Initial Catalog=skolife;Persist Security Info=True;User ID=sa;Password=2491983&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;Data Source=.;Initial Catalog=skolife;Persist Security Info=True;User ID=sa;Password=2491983&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Data Source=.\sql16;Initial Catalog=skolife;Persist Security Info=True;User ID=sa;Password=2491983</Value>
+      <Value Profile="(Default)">Data Source=.;Initial Catalog=skolife;Persist Security Info=True;User ID=sa;Password=2491983</Value>
     </Setting>
     <Setting Name="GetConfigSrvURL" Type="System.String" Scope="User">
-      <Value Profile="(Default)">http://192.168.161.128/SkoLifeAsyncSrv/api/SkolifeAsync/getconfig.php</Value>
+      <Value Profile="(Default)">http://Win10OpenSource/SkoLifeAsyncSrv/api/SkolifeAsync/getconfig.php</Value>
     </Setting>
     <Setting Name="PostDataSrvURL" Type="System.String" Scope="User">
-      <Value Profile="(Default)">http://192.168.161.128/SkoLifeAsyncSrv/api/SkolifeAsync/postdata.php</Value>
+      <Value Profile="(Default)">http://Win10OpenSource/SkoLifeAsyncSrv/api/SkolifeAsync/postdata.php</Value>
     </Setting>
     <Setting Name="ExecuteInterval" Type="System.TimeSpan" Scope="User">
       <Value Profile="(Default)">00:01:00</Value>
     </Setting>
     <Setting Name="RequestDataSrvURL" Type="System.String" Scope="User">
-      <Value Profile="(Default)">http://192.168.161.128/SkoLifeAsyncSrv/api/SkolifeAsync/requestdata.php</Value>
+      <Value Profile="(Default)">http://Win10OpenSource/SkoLifeAsyncSrv/api/SkolifeAsync/requestdata.php</Value>
     </Setting>
     <Setting Name="PostDynSrvURL" Type="System.String" Scope="User">
-      <Value Profile="(Default)">http://192.168.161.128/SkoLifeAsyncSrv/api/SkolifeAsync/postdyn.php</Value>
+      <Value Profile="(Default)">http://Win10OpenSource/SkoLifeAsyncSrv/api/SkolifeAsync/postdyn.php</Value>
     </Setting>
   </Settings>
 </SettingsFile>
