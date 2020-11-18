@@ -14,6 +14,7 @@ namespace SkoLifeWinSrv
         public ProjectInstaller()
         {
             InitializeComponent();
+            serviceInstallerX.ServiceName = Properties.Settings.Default.ServiceName;
         }
     }
 }
