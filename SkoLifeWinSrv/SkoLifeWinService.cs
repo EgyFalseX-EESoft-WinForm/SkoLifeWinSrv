@@ -20,7 +20,6 @@ namespace SkoLifeWinSrv
         public SkoLifeWinService()
         {
             InitializeComponent();
-            ServiceName = Properties.Settings.Default.ServiceName;
         }
 
         protected override void OnStart(string[] args)

@@ -14,7 +14,29 @@ namespace SkoLifeWinSrv
         public ProjectInstaller()
         {
             InitializeComponent();
-            serviceInstallerX.ServiceName = Properties.Settings.Default.ServiceName;
+        }
+        private void SetServiceName()
+        {
+            if (Context.Parameters.ContainsKey("ServiceName"))
+            {
+                serviceInstallerX.ServiceName = Context.Parameters["ServiceName"];
+            }
+
+            if (Context.Parameters.ContainsKey("DisplayName"))
+            {
+                serviceInstallerX.DisplayName = Context.Parameters["DisplayName"];
+            }
+        }
+        protected override void OnBeforeInstall(IDictionary savedState)
+        {
+            SetServiceName();
+            base.OnBeforeInstall(savedState);
+        }
+
+        protected override void OnBeforeUninstall(IDictionary savedState)
+        {
+            SetServiceName();
+            base.OnBeforeUninstall(savedState);
         }
     }
 }

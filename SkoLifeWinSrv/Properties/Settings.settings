@@ -25,8 +25,5 @@
     <Setting Name="PostDynSrvURL" Type="System.String" Scope="User">
       <Value Profile="(Default)">http://Win10OpenSource/SkoLifeAsyncSrv/api/SkolifeAsync/postdyn.php</Value>
     </Setting>
-    <Setting Name="ServiceName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">SkoLifeWinService</Value>
-    </Setting>
   </Settings>
 </SettingsFile>

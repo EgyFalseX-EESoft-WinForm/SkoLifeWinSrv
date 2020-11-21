@@ -93,17 +93,5 @@ namespace SkoLifeWinSrv.Properties {
                 this["PostDynSrvURL"] = value;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("SkoLifeWinService")]
-        public string ServiceName {
-            get {
-                return ((string)(this["ServiceName"]));
-            }
-            set {
-                this["ServiceName"] = value;
-            }
-        }
     }
 }
