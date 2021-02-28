@@ -226,6 +226,16 @@ namespace SkoLifeWinSrv.BO
                 bulkCopy.BatchSize = dtData.Rows.Count;
                 bulkCopy.WriteToServer(dtData);
 
+                
+                //Remove AutoIncermental Column from Merage statment
+                command.CommandText =
+                    $"SELECT top 1 [name] FROM sys.identity_columns	WHERE OBJECT_NAME(object_id) = '{BulkTableName}'";
+                object colName = command.ExecuteScalar();
+                if (colName != null)
+                {
+                    src_col.Remove(colName.ToString());
+                }
+
                 //Merage tmp into distnation table
                 string convStr = string.Join(" , ", (from q in src_col select $"Target.{q} = Source.{q}"));
                 //string matchStr = string.Join(" AND ", (from q in src_col select $"Target.{q} = Source.{q}"));
